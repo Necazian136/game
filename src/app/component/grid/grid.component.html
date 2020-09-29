@@ -1,0 +1,7 @@
+<table class="grid-container">
+  <tr *ngFor="let row of this.tiles">
+    <td *ngFor="let tile of row">
+      <app-tile [tile]="tile"></app-tile>
+    </td>
+  </tr>
+</table>
