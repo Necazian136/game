@@ -1,5 +1,5 @@
 <table class="grid-container">
-  <tr *ngFor="let row of this.tiles">
+  <tr *ngFor="let row of this.grid.tiles">
     <td *ngFor="let tile of row">
       <app-tile [tile]="tile"></app-tile>
     </td>

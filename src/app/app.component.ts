@@ -1,32 +1,41 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {GridDto} from './dto/grid/grid.dto';
+import {PlayerService} from './service/player.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit {
-  title = 'game';
+export class AppComponent implements AfterViewInit, OnInit {
+
+  title = 'Game';
+  grid: GridDto;
+  playerService: PlayerService;
+  name: string;
 
   @ViewChild('keyboard') keyboard: ElementRef;
-
-  name: string;
 
   constructor() {
   }
 
+  onKeyPress(event: KeyboardEvent): void {
+    event.preventDefault();
+    const inputChar: string = String.fromCharCode(event.charCode);
+    console.log(inputChar);
+  }
+
   ngAfterViewInit(): void {
-    const keyboard = this.keyboard.nativeElement;
+    const keyboard: any = this.keyboard.nativeElement;
     keyboard.focus();
 
-    keyboard.onblur = function() {
+    keyboard.onblur = () => {
       keyboard.focus();
     };
   }
 
-  onKeyPress(event: KeyboardEvent): void {
-    event.preventDefault();
-    const inputChar = String.fromCharCode(event.charCode);
-    console.log(inputChar);
+  ngOnInit(): void {
+    this.grid = new GridDto(15, 15);
+    this.playerService = new PlayerService();
   }
 }
