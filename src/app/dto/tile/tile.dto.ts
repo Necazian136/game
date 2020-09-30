@@ -3,21 +3,18 @@ import {ObjectDto} from '../object/object.dto';
 export class TileDto {
   x: number;
   y: number;
-  objects: ObjectDto[] = [];
+  object: ObjectDto;
 
   constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
   }
 
-  addObject(object: ObjectDto): void {
-    this.objects.push(object);
+  setObject(object: ObjectDto): void {
+    this.object = object;
   }
 
-  removeObject(object: ObjectDto): void {
-    const index = this.objects.indexOf(object);
-    if (index >= 0) {
-      this.objects.splice(index, 1);
-    }
+  removeObject(): void {
+    this.object = null;
   }
 }

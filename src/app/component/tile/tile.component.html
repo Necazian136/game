@@ -1,3 +1,3 @@
-<div *ngFor="let object of this.tile.objects">
-  <app-object [object]="object"></app-object>
+<div *ngIf="this.tile.object">
+  <app-object [object]="this.tile.object"></app-object>
 </div>
