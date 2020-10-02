@@ -1,7 +1,7 @@
-<table class="grid-container">
-  <tr *ngFor="let row of this.grid.tiles">
-    <td *ngFor="let tile of row">
+<div class="grid-container">
+  <div class="grid-row" *ngFor="let row of this.grid.tiles">
+    <div class="tile" *ngFor="let tile of row">
       <app-tile [tile]="tile"></app-tile>
-    </td>
-  </tr>
-</table>
+    </div>
+  </div>
+</div>

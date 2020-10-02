@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {GridDto} from './dto/grid/grid.dto';
 import {PlayerService} from './service/player.service';
 import {ObjectDto} from './dto/object/object.dto';
+import {ObjectService} from './service/object.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,9 @@ export class AppComponent implements AfterViewInit, OnInit {
   title = 'Game';
   grid: GridDto;
   playerService: PlayerService;
+  objectService: ObjectService;
   name: string;
   vision = 11;
-  ws: WebSocket;
 
   @ViewChild('keyboard') keyboard: ElementRef;
 
@@ -38,17 +39,10 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.ws = new WebSocket('ws://localhost:8080');
+    const ws = new WebSocket('ws://localhost:8080');
 
-    this.ws.onopen = () => {
-      this.ws.onmessage = (event) => {
-        console.log(event);
-      };
-
-
-      // this.ws.send('Here\'s some text that the server is urgently awaiting!');
-    };
     this.grid = new GridDto(this.vision, this.vision);
-    this.playerService = new PlayerService(this.grid, new ObjectDto());
+    this.objectService = new ObjectService();
+    this.playerService = new PlayerService(this.objectService, this.grid, new ObjectDto(), ws);
   }
 }

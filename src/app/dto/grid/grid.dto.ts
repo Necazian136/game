@@ -14,6 +14,5 @@ export class GridDto {
         this.tiles[y][x] = (new TileDto(x, y));
       }
     }
-    console.log(this.tiles);
   }
 }
