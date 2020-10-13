@@ -1,5 +1,7 @@
 import {ObjectDto} from '../dto/object/object.dto';
+import {Injectable} from '@angular/core';
 
+@Injectable()
 export class ObjectService {
   createObject(char): ObjectDto {
     switch (char) {
