@@ -10,6 +10,7 @@ export class SocketService {
     this.ws = new WebSocket('ws://localhost:8080');
     this.ws.onopen = () => {
       this.ws.onmessage = (event) => {
+        console.log(event.data);
         this.processMessage(event.data);
       };
     };

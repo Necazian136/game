@@ -8,9 +8,12 @@ export class GridDto {
   constructor(width: number, height: number) {
     this.width = width;
     this.height = height;
-    for (let y = 0; y < height; y++) {
-      this.tiles[y] = [];
-      for (let x = 0; x < width; x++) {
+  }
+
+  initMap(x: number, y: number): void {
+    for (let i = y - (this.height / 2); i < y + (this.height / 2); i++) {
+      this.tiles[i] = [];
+      for (let j = x - (this.width / 2); j < x + (this.width / 2); j++) {
         this.tiles[y][x] = (new TileDto(x, y));
       }
     }

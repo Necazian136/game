@@ -29,9 +29,11 @@ export class PlayerService {
   isValidMove = (inputChar: string): boolean => {
     return !this.isMoveDelayed &&
       Object.keys(this.allowedMoves).includes(inputChar.toLowerCase());
-  };
+  }
 
   registerSocketMethods(): void {
-    this.socketService.on('')
+    this.socketService.on('move', () => {
+
+    });
   }
 }

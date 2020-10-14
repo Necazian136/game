@@ -10,16 +10,4 @@ export class TileDto {
     this.y = y;
     this.object = null;
   }
-
-  setObject(object: ObjectDto): void {
-    this.object = object;
-  }
-
-  getObject(): ObjectDto {
-    return this.object;
-  }
-
-  removeObject(): void {
-    this.object = null;
-  }
 }
