@@ -6,8 +6,11 @@ import { GridComponent } from './component/grid/grid.component';
 import { TileComponent } from './component/tile/tile.component';
 import { ObjectComponent } from './component/object/object.component';
 import {PlayerService} from './service/player.service';
-import {ObjectService} from './service/object.service';
+import {SpriteService} from './service/sprite.service';
 import {SocketService} from './service/socket.service';
+import {MapService} from './service/map.service';
+import {GridDto} from './dto/grid/grid.dto';
+import {Globals} from './globals/globals';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,7 @@ import {SocketService} from './service/socket.service';
   imports: [
     BrowserModule
   ],
-  providers: [PlayerService, ObjectService, SocketService],
+  providers: [PlayerService, MapService, SpriteService, SocketService, GridDto, Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

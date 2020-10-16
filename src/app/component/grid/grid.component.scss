@@ -1,4 +1,5 @@
 .grid-container {
+  position: absolute;
   display: flex;
   flex-direction: column;
   .grid-row {
@@ -7,11 +8,18 @@
   }
 }
 
-.tile {
-  background: no-repeat center/100% url("/assets/textures/tile/grass.jpg");
+.game-container {
   position: relative;
-  width: 50px;
-  height: 50px;
-  border: 1px black solid;
-  margin: 0;
+}
+
+.unattached-container {
+  position: absolute;
+}
+
+.main-player-container {
+  position: absolute;
+}
+
+.object {
+  position: relative;
 }

@@ -1,7 +1,28 @@
-<div class="grid-container">
-  <div class="grid-row" *ngFor="let row of this.grid.tiles">
-    <div class="tile" *ngFor="let tile of row">
-      <app-tile [tile]="tile"></app-tile>
+<div class="game-container">
+  <div class="grid-container">
+    <div class="grid-row" *ngFor="let row of this.grid.tiles">
+      <div *ngFor="let tile of row">
+        <app-tile [tile]="tile"></app-tile>
+      </div>
     </div>
+  </div>
+  <div class="unattached-container">
+    <div class="unattached-object object-container" *ngFor="let object of this.grid.objects | keyvalue">
+      <app-object class="object" [object]="object.value"
+                  [ngStyle]="{
+                      'top': this.globals.tileWidth * object.value.y + 'px',
+                      'left': this.globals.tileHeight * object.value.x + 'px'
+                    }"
+      ></app-object>
+    </div>
+  </div>
+  <div class="main-player-container object-container">
+    <app-object class="object" *ngIf="this.grid.player"
+                [object]="this.grid.player"
+                [ngStyle]="{
+                    'top': this.globals.tileWidth * this.grid.player.y + 'px',
+                    'left': this.globals.tileHeight * this.grid.player.x + 'px'
+                  }"
+    ></app-object>
   </div>
 </div>

@@ -1,6 +1,5 @@
-.object {
-  position: absolute;
-  height: 50px;
-  width: 50px;
-  animation: 3s slidein;
+.tile {
+  position: relative;
+  border: 1px black solid;
+  margin: 0;
 }

@@ -3,11 +3,11 @@ import {ObjectDto} from '../object/object.dto';
 export class TileDto {
   x: number;
   y: number;
+  sprite: string;
   object: ObjectDto;
 
-  constructor(x: number, y: number) {
-    this.x = x;
-    this.y = y;
+  constructor(sprite: string = null) {
+    this.sprite = sprite;
     this.object = null;
   }
 }

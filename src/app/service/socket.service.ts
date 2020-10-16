@@ -10,7 +10,6 @@ export class SocketService {
     this.ws = new WebSocket('ws://localhost:8080');
     this.ws.onopen = () => {
       this.ws.onmessage = (event) => {
-        console.log(event.data);
         this.processMessage(event.data);
       };
     };
@@ -26,8 +25,8 @@ export class SocketService {
 
   processMessage = (msg): void => {
     const response = new ResponseDto(msg);
-    if (this.on[response.event] !== undefined) {
-      this.on[response.event](response);
+    if (this.events[response.event] !== undefined) {
+      this.events[response.event](response);
     }
-  };
+  }
 }

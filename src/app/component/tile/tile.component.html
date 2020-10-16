@@ -1,3 +1,7 @@
-<div *ngIf="this.tile.object">
-  <app-object class="object" [object]="this.tile.object"></app-object>
+<div class="tile" [ngStyle]="{
+  'background': 'no-repeat center/100% url(' + this.tile.sprite + ')',
+  'width': this.globals.tileWidth - 2 + 'px',
+  'height': this.globals.tileHeight - 2 + 'px'
+}">
+  <app-object *ngIf="this.tile.object" class="object" [object]="this.tile.object"></app-object>
 </div>

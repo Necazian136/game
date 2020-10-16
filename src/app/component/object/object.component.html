@@ -1,1 +1,6 @@
-<img class="sprite" src="{{this.object.sprite}}">
+<img
+  [ngStyle]="{
+  'width': this.globals.tileWidth + 'px'
+}"
+
+  src="{{this.object.sprite}}">

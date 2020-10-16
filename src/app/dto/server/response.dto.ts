@@ -1,6 +1,6 @@
 export class ResponseDto {
   event: string;
-  data: object;
+  data: any;
 
   constructor(response: string) {
     const obj = JSON.parse(response);

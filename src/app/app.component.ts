@@ -1,9 +1,7 @@
 import {Component, ElementRef, NgModule, OnInit, ViewChild} from '@angular/core';
 import {GridDto} from './dto/grid/grid.dto';
 import {PlayerService} from './service/player.service';
-import {ObjectDto} from './dto/object/object.dto';
-import {ObjectService} from './service/object.service';
-import {BrowserModule} from '@angular/platform-browser';
+import {MapService} from './service/map.service';
 
 @Component({
   selector: 'app-root',
@@ -12,20 +10,19 @@ import {BrowserModule} from '@angular/platform-browser';
 })
 export class AppComponent implements OnInit {
   title = 'Game';
-  grid: GridDto;
+  grid = new GridDto();
   playerService: PlayerService;
-  name: string;
-  vision = 11;
+  mapService: MapService;
 
   @ViewChild('keyboard') keyboard: ElementRef;
 
-  constructor(playerService: PlayerService) {
+  constructor(playerService: PlayerService, mapService: MapService, grid: GridDto) {
     this.playerService = playerService;
+    this.mapService = mapService;
+    this.grid = grid;
   }
 
   ngOnInit(): void {
-    this.grid = new GridDto(this.vision, this.vision);
-
     window.onkeypress = (event) => {
       this.playerService.movePlayer(event.key);
     };
