@@ -15,20 +15,21 @@ export class GridDto {
     this.player = null;
   }
 
-  initMap(tiles: string, objects: string): void {
-    const tileLayers = tiles.split('\n');
-    for (let y = 0; y < tileLayers.length; y++) {
-      this.tiles[y] = [];
-      for (let x = 0; x < tileLayers[y].length; x++) {
-        this.tiles[y][x] = (new TileDto(SpriteService.getTileSprite(tileLayers[y][x])));
-      }
-    }
-    const objectLayers = objects.split('\n');
-    for (let y = 0; y < objectLayers.length; y++) {
-      for (let x = 0; x < objectLayers[y].length; x++) {
-        const objectSprite = SpriteService.getObjectSprite(objectLayers[y][x]);
-        if (this.tiles[y][x] && objectSprite) {
-          this.tiles[y][x].object = (new ObjectDto(x, y, objectSprite));
+  initMap(map: any[][]): void {
+    for (const layer of map) {
+      for (const place of layer) {
+        if (this.tiles[place.tile.y] === undefined) {
+          this.tiles[place.tile.y] = [];
+        }
+        this.tiles[place.tile.y][place.tile.x] = new TileDto(SpriteService.getTileSprite(place.char));
+
+        if (place.object) {
+          if (this.objects[place.object.y] === undefined) {
+            // TODO: доделать
+            this.objects[place.object.y] = [];
+          }
+          const objectSprite = SpriteService.getObjectSprite(place.object.char);
+          this.objects[place.object.y][place.object.x].object = (new ObjectDto(place.object.x, place.object.y, objectSprite));
         }
       }
     }

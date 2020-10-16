@@ -19,7 +19,8 @@ export class MapService extends EventResolverService {
 
   registerSocketMethods(): void {
     this.socketService.on('map', (response: ResponseDto) => {
-      this.grid.initMap(response.data.tiles, response.data.objects);
+      console.log(response);
+      this.grid.initMap(response.data);
     });
   }
 }

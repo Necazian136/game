@@ -26,12 +26,12 @@ export class PlayerService extends EventResolverService {
         this.isMoveDelayed = false;
       }, this.moveDelay);
     }
-  }
+  };
 
   isValidMove = (inputChar: string): boolean => {
     return !this.isMoveDelayed &&
       Object.keys(this.allowedMoves).includes(inputChar.toLowerCase());
-  }
+  };
 
   registerSocketMethods(): void {
     this.socketService.on('get_my_player', (response: ResponseDto) => {
@@ -54,7 +54,6 @@ export class PlayerService extends EventResolverService {
     this.socketService.on('update_player', (response: ResponseDto) => {
       console.log(response);
       const playerData = response.data;
-      if (this.grid.player = )
     });
   }
 }
