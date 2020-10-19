@@ -21,15 +21,14 @@ export class GridDto {
         if (this.tiles[place.tile.y] === undefined) {
           this.tiles[place.tile.y] = [];
         }
-        this.tiles[place.tile.y][place.tile.x] = new TileDto(SpriteService.getTileSprite(place.char));
+        this.tiles[place.tile.y][place.tile.x] = new TileDto(SpriteService.getTileSprite(place.tile.char));
 
         if (place.object) {
-          if (this.objects[place.object.y] === undefined) {
-            // TODO: доделать
-            this.objects[place.object.y] = [];
-          }
           const objectSprite = SpriteService.getObjectSprite(place.object.char);
-          this.objects[place.object.y][place.object.x].object = (new ObjectDto(place.object.x, place.object.y, objectSprite));
+          const object = (new ObjectDto(place.object.id, place.object.x, place.object.y, objectSprite));
+          if (this.objects[place.object.id] === undefined) {
+            this.tiles[place.object.y][place.object.x].object = object;
+          }
         }
       }
     }

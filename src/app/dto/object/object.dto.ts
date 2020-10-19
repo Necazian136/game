@@ -1,9 +1,11 @@
 export class ObjectDto {
+  id: number;
   x: number;
   y: number;
   sprite: string;
 
-  constructor(x: number, y: number, sprite: string = null) {
+  constructor(id: number, x: number, y: number, sprite: string = null) {
+    this.id = id;
     this.x = x;
     this.y = y;
     if (sprite === null) {

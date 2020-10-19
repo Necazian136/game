@@ -1,5 +1,5 @@
 <div class="tile" [ngStyle]="{
-  'background': 'no-repeat center/100% url(' + this.tile.sprite + ')',
+  'background': 'no-repeat center/100% ' + this.tile.sprite ? 'url(' + this.tile.sprite + ')' : '',
   'width': this.globals.tileWidth - 2 + 'px',
   'height': this.globals.tileHeight - 2 + 'px'
 }">
