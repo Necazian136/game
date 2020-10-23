@@ -1,28 +1,39 @@
 <div class="game-container">
-  <div class="grid-container">
-    <div class="grid-row" *ngFor="let row of this.grid.tiles">
-      <div *ngFor="let tile of row">
-        <app-tile [tile]="tile"></app-tile>
+  <div class="window-container" *ngIf="this.grid.player"
+       [ngStyle]="{
+         'width': this.globals.tileWidth * 11 + 'px',
+         'height': this.globals.tileHeight * 11 + 'px'
+       }">
+    <div class="grid-container"
+         [ngStyle]="{
+           'top': - this.globals.tileWidth * (this.grid.player.y % 1) + 'px',
+           'left': - this.globals.tileHeight * (this.grid.player.x % 1) + 'px'
+         }"
+    >
+      <div class="grid-row" *ngFor="let row of this.grid.tiles.slice(this.grid.player.y - 5, this.grid.player.y + 7)">
+        <div *ngFor="let tile of row.slice(this.grid.player.x - 5, this.grid.player.x + 7)">
+          <app-tile [tile]="tile"></app-tile>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="unattached-container">
-    <div class="unattached-object object-container" *ngFor="let object of this.grid.objects | keyvalue">
-      <app-object class="object" [object]="object.value"
-                  [ngStyle]="{
-                      'top': this.globals.tileWidth * object.value.y + 'px',
-                      'left': this.globals.tileHeight * object.value.x + 'px'
+    <div class="unattached-container">
+      <div class="unattached-object object-container" *ngFor="let object of this.grid.objects | keyvalue">
+        <app-object class="object" [object]="object.value"
+                    [ngStyle]="{
+                      'top': this.globals.tileWidth * (object.value.y - this.grid.player.y + 5) + 'px',
+                      'left': this.globals.tileHeight * (object.value.x - this.grid.player.x + 5) + 'px'
                     }"
+        ></app-object>
+      </div>
+    </div>
+    <div class="main-player-container object-container">
+      <app-object class="object" *ngIf="this.grid.player"
+                  [object]="this.grid.player"
+                  [ngStyle]="{
+                    'top': this.globals.tileWidth * 5 + 'px',
+                    'left': this.globals.tileHeight * 5 + 'px'
+                  }"
       ></app-object>
     </div>
-  </div>
-  <div class="main-player-container object-container">
-    <app-object class="object" *ngIf="this.grid.player"
-                [object]="this.grid.player"
-                [ngStyle]="{
-                    'top': this.globals.tileWidth * this.grid.player.y + 'px',
-                    'left': this.globals.tileHeight * this.grid.player.x + 'px'
-                  }"
-    ></app-object>
   </div>
 </div>

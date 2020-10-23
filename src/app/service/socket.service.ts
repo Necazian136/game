@@ -7,7 +7,7 @@ export class SocketService {
   events = {};
 
   constructor() {
-    this.ws = new WebSocket('ws://localhost:8080');
+    this.ws = new WebSocket('ws://172.16.2.105:8080');
     this.ws.onopen = () => {
       this.ws.onmessage = (event) => {
         this.processMessage(event.data);
